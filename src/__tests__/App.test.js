@@ -75,4 +75,24 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+
+  test('get list of events matching the number of events selected by the user', async () => {
+    const AppWrapper = mount(<App />); // renders App component using full rendering API
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const typedNumber = 1;
+    NumberOfEventsWrapper.find('.number').simulate('change', { target: { value: typedNumber } });
+    const allEvents = await getEvents();
+    const eventsToShow = allEvents.slice(0, typedNumber)
+    expect(AppWrapper.state('events')).toEqual(eventsToShow);
+    AppWrapper.unmount();
+  });
+
+  test('get list of all events when user clears value in number field', async () => {
+    const AppWrapper = mount(<App />); // renders App component using full rendering API
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    NumberOfEventsWrapper.find('.number').simulate('change', { target: { value: '' } });
+    const allEvents = await getEvents();
+    expect(AppWrapper.state('events')).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
 });

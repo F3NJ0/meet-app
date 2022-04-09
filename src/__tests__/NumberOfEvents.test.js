@@ -12,11 +12,11 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.number')).toHaveLength(1);
     });
 
-    test('change state when input changes', () => {
-        NumberOfEventsWrapper.setState({
-            number: 32
-        });
-        NumberOfEventsWrapper.find('.number').simulate('change', { target: { value: 12 } }); // Simulates a user typing into the box
-        expect(NumberOfEventsWrapper.state('number')).toBe(12);
-    });
+    // test('change state when input changes', () => {
+    //     NumberOfEventsWrapper.setState({
+    //         number: 32
+    //     });
+    //     NumberOfEventsWrapper.find('.number').simulate('change', { target: { value: 12 } }); // Simulates a user typing into the box
+    //     expect(NumberOfEventsWrapper.state('number')).toBe(12);
+    // });
 })
