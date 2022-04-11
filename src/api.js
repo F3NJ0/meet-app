@@ -25,12 +25,12 @@ export const extractLocations = (events) => {
  * This function uses the googleapis api to check if an access token is still valid
  */
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
     const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
         .then((res) => res.json())
         .catch((err) => err.json());
 
-    return result
+    return result;
 }
 
 /**
@@ -85,6 +85,26 @@ const removeQuery = () => {
 };
 
 /**
+ * 
+ * @param {*} code : code retrieved from authorization server to exchange for access token (in getAccessToken() function)
+ * @returns : new valid access token
+ */
+
+const getToken = async (code) => {
+    const encodeCode = encodeURIComponent(code);
+    // eslint-disable-next-line
+    const { access_token } = await fetch('https://4hmms9mb9a.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode)
+        .then((res) => {
+            return res.json();
+        })
+        .catch((err) => err.json());
+
+    access_token && localStorage.setItem('access_token', access_token);
+
+    return access_token;
+}
+
+/**
  * Retrieve access token to access Google Calendar API
  * @returns a valid access token to access the Google Calendar API in the getEvents() function
  * 
@@ -110,20 +130,3 @@ export const getAccessToken = async () => {
     return accessToken;
 };
 
-/**
- * 
- * @param {*} code : code retrieved from authorization server to exchange for access token (in getAccessToken() function)
- * @returns : new valid access token
- */
-
-const getToken = async (code) => {
-    const encodeCode = encodeURIComponent(code);
-    // eslint-disable-next-line
-    const { access_token } = await fetch('https://4hmms9mb9a.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode)
-        .then((res) => res.json())
-        .catch((err) => err.json());
-
-    access_token && localStorage.setItem('access_token', access_token);
-
-    return access_token;
-}
