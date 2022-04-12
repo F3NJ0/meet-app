@@ -15,11 +15,11 @@ class Event extends Component {
 
     render() {
         return (
-            <div className='Event'>
+            <div className='event'>
                 <h4 className='event-title'>{this.props.event.summary}</h4>
                 <p className='event-time'>{this.props.event.start.dateTime}</p>
                 <p className='event-location'>{this.props.event.location}</p>
-                <button className='showDetails-button' onClick={this.handleShowDetails}>Show details</button>
+                {!this.state.showDetails && <button className='showDetails-button' onClick={this.handleShowDetails}>Show details</button>}
                 {this.state.showDetails && <p className='event-details'>{this.props.event.description}</p>}
                 {this.state.showDetails && <button className='hideDetails-button' onClick={this.handleHideDetails}>Hide details</button>}
             </div>

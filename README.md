@@ -23,6 +23,7 @@ Then the default number will be set to 32
 Given a user has chosen the city they want to see events for
 When they type a number into the box “Number of Events”
 Then the according number of events will load for the respective city
+
 •	As a user, I would like to be able to use the app when offline so that I can see the events I viewed the last time I was online. 
 1.	Scenario 1: Show cached data when there’s no internet connection
 Given a user has used the app before
