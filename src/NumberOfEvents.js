@@ -11,7 +11,13 @@ class NumberOfEvents extends Component {
     render() {
         return (
             <div>
-                <input type='number' className='number' onChange={this.handleInputChanged} />
+                <label>Number of events to show:</label>
+                <input
+                    type='number'
+                    className='number'
+                    placeholder='Number'
+                    onChange={this.handleInputChanged}
+                />
             </div>
         )
     }

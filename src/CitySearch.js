@@ -29,9 +29,11 @@ class CitySearch extends Component {
     render() {
         return (
             <div className='CitySearch'>
+                <label>Search for location:</label>
                 <input
                     type='text'
                     className='city'
+                    placeholder='City'
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
