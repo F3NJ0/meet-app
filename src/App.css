@@ -38,6 +38,7 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+  margin: 5px;
 }
 
 .city {
@@ -105,12 +106,10 @@ input[type="number"] {
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
-  border-radius: 4px;
   outline: none;
   cursor: pointer;
   background-color: rgb(74, 132, 218);
   color: white;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .name {
@@ -146,10 +145,7 @@ input[type="number"] {
   font-family: sans-serif;
 }
 
-.Alert {
-  position: fixed;
-  top: 20px;
-}
+
 
 .data-vis-wrapper {
   display: flex;
@@ -216,7 +212,15 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+#errorAlert {
+  position: fixed;
+  bottom: 0px;
+}
 
+#infoAlert {
+  position: fixed;
+  top: 20px;
+}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
