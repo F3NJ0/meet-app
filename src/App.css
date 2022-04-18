@@ -43,6 +43,8 @@ input[type="number"] {
 
 .city {
   width: 250px;
+  padding: 10px 5px;
+  width: 100%;
 }
 
 .CitySearch {
@@ -135,6 +137,8 @@ input[type="number"] {
   width: 200px;
   margin: 20px auto;
   text-align: center;
+  padding: 10px 5px;
+  width: 100%;
 }
 
 .button-wrapper {
