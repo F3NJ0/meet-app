@@ -42,9 +42,17 @@ export const checkToken = async (accessToken) => {
 export const getEvents = async () => {
     NProgress.start();
 
+    // If the app is running on localhos, return the mock data 
     if (window.location.href.startsWith('http://localhost')) {
         NProgress.done();
         return mockData;
+    }
+
+    // If the user is offline, return the list of events previously stored in the localStorage
+    if (!navigator.onLine) {
+        const data = localStorage.getItem("lastEvents");
+        NProgress.done();
+        return data ? JSON.parse(events).events : [];;
     }
 
     const token = await getAccessToken();
