@@ -50,9 +50,10 @@ export const getEvents = async () => {
 
     // If the user is offline, return the list of events previously stored in the localStorage
     if (!navigator.onLine) {
+        console.log('Im offline!');
         const data = localStorage.getItem("lastEvents");
         NProgress.done();
-        return data ? JSON.parse(events).events : [];;
+        return data ? JSON.parse(data).events : [];
     }
 
     const token = await getAccessToken();
