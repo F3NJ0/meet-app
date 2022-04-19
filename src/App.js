@@ -51,27 +51,32 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          if (!navigator.onLine) {
-            this.setState({
-              events,
-              locations: extractLocations(events),
-              warningText: 'You are offline. The displayed event list may not be up to date.'
-            });
-          } else {
+    if (navigator.onLine) {
+      const accessToken = localStorage.getItem('access_token');
+      const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get("code");
+      this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+      if ((code || isTokenValid) && this.mounted) {
+        getEvents().then((events) => {
+          if (this.mounted) {
             this.setState({
               events,
               locations: extractLocations(events),
               warningText: ''
             });
           }
+        });
+      }
+    } else {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events,
+            locations: extractLocations(events),
+            warningText: 'You are offline. The displayed event list may not be up to date.',
+            showWelcomeScreen: false
+          });
         }
       });
     }
