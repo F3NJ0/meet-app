@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 import './App.css';
+import EventGenre from './EventGenre';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -51,7 +54,7 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    if (navigator.onLine) {
+    if (navigator.onLine && !window.location.href.startsWith('http://localhost')) {
       const accessToken = localStorage.getItem('access_token');
       const isTokenValid = (await checkToken(accessToken)).error ? false : true;
       const searchParams = new URLSearchParams(window.location.search);
@@ -86,15 +89,40 @@ class App extends Component {
     this.mounted = false;
   }
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
+  };
+
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    const { showWelcomeScreen, locations, warningText, events } = this.state;
+    if (showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} />
-        <WarningAlert id='warningAlert' text={this.state.warningText} />
-        <EventList events={this.state.events} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        <div className='topBar'>
+          <CitySearch locations={locations} updateEvents={this.updateEvents} />
+          <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} />
+        </div>
+        <WarningAlert id='warningAlert' text={warningText} />
+        <div className='data-vis-wrapper'>
+          <EventGenre events={events} />
+          <ResponsiveContainer height={400} >
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+        <EventList events={events} />
+        <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
