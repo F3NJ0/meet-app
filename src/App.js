@@ -103,27 +103,30 @@ class App extends Component {
     const { showWelcomeScreen, locations, warningText, events } = this.state;
     if (showWelcomeScreen === undefined) return <div className="App" />
     return (
-      <div className="App">
+      <>
         <div className='topBar'>
+          <h4 className='appTitle'>Meet App</h4>
           <CitySearch locations={locations} updateEvents={this.updateEvents} />
           <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} />
         </div>
-        <WarningAlert id='warningAlert' text={warningText} />
-        <div className='data-vis-wrapper'>
-          <EventGenre events={events} />
-          <ResponsiveContainer height={400} >
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="city" />
-              <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-            </ScatterChart>
-          </ResponsiveContainer>
+        <div className="App">
+          <WarningAlert id='warningAlert' text={warningText} />
+          <div className='data-vis-wrapper'>
+            <EventGenre events={events} />
+            <ResponsiveContainer height={400} >
+              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
+                <CartesianGrid />
+                <XAxis type="category" dataKey="city" name="city" />
+                <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter data={this.getData()} fill="#4A84DA" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+          <EventList events={events} />
+          <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
         </div>
-        <EventList events={events} />
-        <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
-      </div>
+      </>
     );
   }
 }

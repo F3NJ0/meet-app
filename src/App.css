@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 .App {
   text-align: center;
-  padding: 2% 5%;
+  padding: 2% 10%;
 }
 
 .App * {
@@ -24,94 +25,112 @@ h4 {
 .display-none {
   display: none;
 }
-.showSuggestions {
-  display: block;
+
+.topBar {
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  column-gap: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 0% 10%;
 }
 
 input[type="text"],
 input[type="number"] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
+
+  border-radius: 38px;
   outline: none;
   border: 1px solid #ccc;
   font-size: 14px;
   line-height: 20px;
-  align-self: center;
   height: 38px;
-  margin: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding-left: 8px;
 }
 
 .city {
-  width: 250px;
-  padding: 10px 5px;
-  width: 100%;
+  grid-column: 2 / span 1;
 }
 
-.CitySearch {
+.number {
+  grid-column: 3 / span 1;
+}
+
+.appTitle {
+  grid-column: 1 / span 1;
+}
+
+/* .CitySearch {
   display: flex;
   flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
-  position: relative;
-}
+  gap: 5px;
+  align-items: flex-start;
+} */
+
 
 .suggestions {
-  width: 250px;
   position: absolute;
+  top: 75px;
   z-index: 2;
-  align-self: center;
-  margin: 0;
-  top: 43px;
+  width: 250px;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
-.suggestions > li {
+.suggestions>li {
   text-align: left;
   padding: 8px 6px 8px 10px;
   background-color: #eee;
   cursor: default;
 }
 
-.suggestions > li:last-child {
+.suggestions>li:last-child {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.suggestions > li:hover {
+.suggestions>li:hover {
   background-color: #bcdcdb;
 }
 
 .event {
-  padding: 10px 10px 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-top: 1px solid #ccc;
   position: relative;
   background-color: white;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.event:hover {
-  background-color: rgb(250, 250, 250);
-}
-
-.event-time, .event-location, .event-details {
+.event-time,
+.event-location,
+.event-details {
   color: rgb(78, 78, 78)
 }
 
-.showDetails-button, .hideDetails-button {
+.showDetails-button,
+.hideDetails-button {
   position: absolute;
   float: right;
   right: 5px;
   bottom: 5px;
-  padding: 5px 8px;
-  outline: none;
+  padding: 5px 12px;
   cursor: pointer;
-  background-color: rgb(74, 132, 218);
+  background-color: #4A84DA;
   color: white;
+  height: 36px;
+  border-radius: 36px;
+  border: none;
+  font-weight: 600;
 }
 
 .name {
@@ -133,103 +152,32 @@ input[type="number"] {
   overflow-x: hidden;
 }
 
-.numberOfEvents {
-  width: 200px;
-  margin: 20px auto;
-  text-align: center;
-  padding: 10px 5px;
-  width: 100%;
-}
-
-.button-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding: 20px;
-  font-family: sans-serif;
-}
-
-
 
 .data-vis-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 0% 5%;
 }
+
 .data-vis-wrapper .recharts-responsive-container {
   min-width: 100%;
   display: flex;
 }
+
 .recharts-surface {
   overflow: visible;
 }
 
-.login-button {
-  color: #494949;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 20px;
-  border: 4px solid #494949;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-  min-width: 10rem;
-  margin: 1rem;
-}
-
-.google-btn {
-  width: 184px;
-  height: 42px;
-  margin: 1rem;
-  background-color: #4285f4;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-}
-.google-btn:hover {
-  box-shadow: 0 0 6px #4285f4;
-}
-.google-btn:active {
-  background: #1669f2;
-}
-.google-icon-wrapper {
-  position: absolute;
-  margin-top: 1px;
-  margin-left: 1px;
-  width: 40px;
-  height: 40px;
-  border-radius: 2px;
-  background-color: #fff;
-}
-.google-icon {
-  position: absolute;
-  margin-top: 11px;
-  margin-left: -8px;
-  width: 18px;
-  height: 18px;
-}
-.btn-text {
-  float: right;
-  margin: 11px 11px 0 0;
-  color: #fff;
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  font-family: "Roboto";
-}
-
-#errorAlert {
-  position: fixed;
-  bottom: 0px;
-}
-
-#infoAlert {
-  position: fixed;
-  top: 20px;
-}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
   }
+
   .data-vis-wrapper .recharts-responsive-container {
     flex-basis: 50%;
     max-width: 50%;
