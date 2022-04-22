@@ -6,7 +6,19 @@
     background: white;
 }
 
-.login-button {
+.login_cont {
+    margin: 10% 30%;
+    padding: 5%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.text-cont {
+    border-bottom: 1px solid #ccc;
+}
+
+/* .login-button {
     color: #494949;
     text-transform: uppercase;
     text-decoration: none;
@@ -16,7 +28,7 @@
     transition: all 0.4s ease 0s;
     min-width: 10rem;
     margin: 1rem;
-}
+} */
 
 .google-btn {
     width: 184px;
@@ -55,7 +67,6 @@
 
 .btn-text {
     float: right;
-    margin: 11px 11px 0 0;
     color: #fff;
     font-size: 14px;
     letter-spacing: 0.2px;
@@ -64,4 +75,8 @@
     width: 80%;
     height: 100%;
     text-align: center;
+}
+
+button {
+    border: none;
 }
