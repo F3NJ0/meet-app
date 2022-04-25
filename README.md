@@ -3,7 +3,7 @@
 ## Description
 The goal of this project is to build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events.
 
-### What technology usage and why?
+### What technology did I use and why?
 
 For the frontend of my femmovies application I chose **React**. The main reasons are
 * type of application: I need a library helping me build the UI of my app. React is suited best for the view side of the mvc approach and its virtual DOM ensures faster rendering of views
@@ -14,7 +14,7 @@ For the frontend of my femmovies application I chose **React**. The main reasons
 * mobile version: with its associated ecosystem of tools, React is also a good springboard for my next project, where I want to use React Native for a mobile application. So getting familiar with React first is valuable.
 
 
-I created the application using the Create React App boilerplate, enabling the pwa template to transfer the app into a PWA in the development process:
+I created the application using the **Create React App** boilerplate, enabling the pwa template to transfer the app into a PWA in the development process:
 ```bash
 npx create-react-app meet --template cra-template-pwa --use-npm
 ```
@@ -75,6 +75,8 @@ Then on top of the list a chart that visualizes the type of upcoming events will
 * The recommended testing utility for React, Enzyme, doesn't support React versions from 17 upward. There exists an unofficial adapter for version 17, however, there is no adapter for React v.18. Therefore, I had to downgrade my React version to v.17 to still be able to work with Enzyme.
 
 * You can use end-to-end tesing to create videos for tutorials or customer presentations
+
+* When using the creat react app biolerplate, the components are created as .js files (instead of .jsx)
 
 ## How to install and run the project ...
 
